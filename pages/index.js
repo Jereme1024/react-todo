@@ -2,10 +2,13 @@
 import Head from 'next/head'
 import { useState } from 'react'
 import TodoState from './TodoState'
+import TodoStateApi from './TodoStateApi'
 import HighlightButton from '../components/HighlightButton'
+import { ToastContainer, Slide } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function Home() {
-  const [page, setPage] = useState('State')
+  const [page, setPage] = useState('StateApi')
   return (
     <div name='container'>
       <Head>React Hook Practice</Head>
@@ -16,8 +19,11 @@ export default function Home() {
       {
         page === 'State' ?
           <TodoState /> :
-          <></>
+          page === 'StateApi' ?
+            <TodoStateApi /> :
+            <></>
       }
+      <ToastContainer position='top-center' transition={Slide} autoClose={1000} />
     </div>
   )
 }
