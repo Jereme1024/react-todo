@@ -1,27 +1,9 @@
-import { useEffect, useReducer } from 'react'
+import { useContext, useEffect } from 'react'
 import HighlightButton from '../components/HighlightButton'
-
-const initState = {
-  list: [{ checked: false, name: 'init' }],
-  name: '',
-  mode: 'All',
-}
-
-function reducer(state, action) {
-  switch (action.type) {
-  case 'UpdateName':
-    return { ...state, name: action.name }
-  case 'UpdateMode':
-    return { ...state, mode: action.mode }
-  case 'UpdateList':
-    return { ...state, list: action.list }
-  default:
-    throw new Error()
-  }
-}
+import Context from '../store'
 
 export default function TodoReducer() {
-  const [state, dispatch] = useReducer(reducer, initState)
+  const [state, dispatch, page] = useContext(Context)
   const [list, setList] = [state.list, (x) => dispatch({ type: 'UpdateList', list: x(state.list) })]
   const [name, setName] = [state.name, (x) => dispatch({ type: 'UpdateName', name: x })]
   const [mode, setMode] = [state.mode, (x) => dispatch({ type: 'UpdateMode', mode: x })]
