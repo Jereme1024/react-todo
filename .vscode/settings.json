@@ -4,10 +4,6 @@
   },
   "editor.formatOnSave": false,
   "cSpell.words": [
-    "Ciphertext",
-    "Drvs",
-    "upsert",
-    "uuts",
-    "vbeacon"
+    "firestore",
   ]
 }
