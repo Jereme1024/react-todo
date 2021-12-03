@@ -5,6 +5,7 @@ import TodoState from './TodoState'
 import TodoStateApi from './TodoStateApi'
 import TodoReducer from './TodoReducer'
 import TodoFirestore from './TodoFirestore'
+import TodoStateAll from './TodoStateAll'
 import HighlightButton from '../components/HighlightButton'
 import { ToastContainer, Slide } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -12,7 +13,7 @@ import { initState, reducer } from '../vm/todoVm'
 import Context from '../store'
 
 export default function Home() {
-  const [page, setPage] = useState('Firestore')
+  const [page, setPage] = useState('StateAll')
   const store = useReducer(reducer, initState)
 
   return (
@@ -24,6 +25,7 @@ export default function Home() {
         <HighlightButton mode={page} setMode={setPage} value='StateApi' />
         <HighlightButton mode={page} setMode={setPage} value='Reducer' />
         <HighlightButton mode={page} setMode={setPage} value='Firestore' />
+        <HighlightButton mode={page} setMode={setPage} value='StateAll' />
         <hr/>
         {
           page === 'State' ?
@@ -34,7 +36,9 @@ export default function Home() {
                 <TodoReducer /> :
                 page === 'Firestore' ?
                   <TodoFirestore /> :
-                  <></>
+                  page === 'StateAll' ?
+                    <TodoStateAll /> :
+                    <></>
         }
         <ToastContainer position='top-center' transition={Slide} autoClose={1000} />
       </Context.Provider>
