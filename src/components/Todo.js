@@ -2,10 +2,9 @@ import { useState } from 'react'
 import HighlightButton from './HighlightButton'
 
 export default function Todo({ defaultMode, list, setList }) {
-  const [name, setName] = useState('')
   const [mode, setMode] = useState(defaultMode || 'All')
 
-  const handleSubmit = (name) => {
+  const handleAdd = (name) => {
     setList((prev) => [...prev, { checked: false, name }])
   }
   const handleDelete = (i) => {
@@ -43,11 +42,13 @@ export default function Todo({ defaultMode, list, setList }) {
     </ul>)
   }
 
-  function TodoControl({ mode, handleSubmit }) {
+  function TodoControl({ mode, handleAdd }) {
+    const [name, setName] = useState('')
+
     return (
       <>
         <input onChange={(e) => setName(e.target.value)} value={name}/>
-        <button onClick={handleSubmit}>Add</button>
+        <button onClick={() => (handleAdd(name), setName(''))}>Add</button>
         <br/>
         <HighlightButton setMode={setMode} mode={mode} value='All' />
         <HighlightButton setMode={setMode} mode={mode} value='Checked' />
@@ -59,7 +60,7 @@ export default function Todo({ defaultMode, list, setList }) {
 
   return (
     <>
-      <TodoControl mode={mode} handleSubmit={() => (handleSubmit(name), setName(''))} />
+      <TodoControl mode={mode} handleAdd={handleAdd} />
       <hr></hr>
       <TodoList mode={mode} list={list} handleCheck={handleCheck} handleDelete={handleDelete} />
     </>
