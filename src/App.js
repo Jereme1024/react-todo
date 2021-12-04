@@ -8,11 +8,12 @@ import TodoStateApi from './pages/TodoStateApi'
 import TodoReducer from './pages/TodoReducer'
 import TodoFirestore from './pages/TodoFirestore'
 import TodoStateAll from './pages/TodoStateAll'
+import TodoStateAllLocalStorage from './pages/TodoStateAllLocalStorage'
 import { initState, reducer } from './vm/todoVm'
 import Context from './store'
 
 function App() {
-  const [page, setPage] = useState('StateAll')
+  const [page, setPage] = useState('StateAllLocalStorage')
   const store = useReducer(reducer, initState)
 
   return (
@@ -24,6 +25,7 @@ function App() {
         <HighlightButton mode={page} setMode={setPage} value='Reducer' />
         <HighlightButton mode={page} setMode={setPage} value='Firestore' />
         <HighlightButton mode={page} setMode={setPage} value='StateAll' />
+        <HighlightButton mode={page} setMode={setPage} value='StateAllLocalStorage' />
         <hr/>
         {
           page === 'State' ?
@@ -36,7 +38,9 @@ function App() {
                   <TodoFirestore /> :
                   page === 'StateAll' ?
                     <TodoStateAll /> :
-                    <></>
+                    page === 'StateAllLocalStorage' ?
+                      <TodoStateAllLocalStorage /> :
+                      <></>
         }
         <ToastContainer position='top-center' transition={Slide} autoClose={1000} />
       </Context.Provider>
