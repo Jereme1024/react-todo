@@ -10,14 +10,16 @@ export default function Todo({ defaultMode, list, setList }) {
   }
   const handleDelete = (i) => {
     setList((prev) => {
-      prev.splice(i, 1)
-      return [...prev]
+      const copy = [...prev]
+      copy.splice(i, 1)
+      return [...copy]
     })
   }
   const handleCheck = (e, i) => {
     setList((prev) => {
-      prev[i].checked = e.target.checked
-      return [...prev]
+      const copy = [...prev]
+      copy[i].checked = e.target.checked
+      return [...copy]
     })
   }
 

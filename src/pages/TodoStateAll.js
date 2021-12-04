@@ -8,7 +8,7 @@ const defaultState = {
 export default function TodoStateAll() {
   const [state, setState] = useState(defaultState)
 
-  function setList(cb) {
+  const setList = (cb) => {
     setState({ ...state, list: cb(state.list) })
   }
 
