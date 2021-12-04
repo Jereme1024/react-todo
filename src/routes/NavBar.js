@@ -26,6 +26,9 @@ export default function NavBar() {
           <NavLink to="/redux">Redux</NavLink>
         </li>
         <li>
+          <NavLink to="/stateContext">StateContext</NavLink>
+        </li>
+        <li>
           <NavLink to="/fireStore">FireStore</NavLink>
         </li>
       </ul>
