@@ -1,9 +1,9 @@
 import { useContext, useEffect } from 'react'
 import Todo from '../components/Todo'
-import Context from '../store'
+import DispatchContext from '../store/DispatchContext'
 
 export default function TodoReducer() {
-  const [state, dispatch] = useContext(Context)
+  const [state, dispatch] = useContext(DispatchContext)
 
   useEffect(() => {
     console.log(state)

@@ -23,6 +23,9 @@ export default function NavBar() {
           <NavLink to="/localStorage">LocalStorage</NavLink>
         </li>
         <li>
+          <NavLink to="/redux">Redux</NavLink>
+        </li>
+        <li>
           <NavLink to="/fireStore">FireStore</NavLink>
         </li>
       </ul>
