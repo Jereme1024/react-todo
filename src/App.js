@@ -1,25 +1,23 @@
-/* eslint-disable react/jsx-key */
-import Head from 'next/head'
-import { useReducer, useState } from 'react'
-import TodoState from './TodoState'
-import TodoStateApi from './TodoStateApi'
-import TodoReducer from './TodoReducer'
-import TodoFirestore from './TodoFirestore'
-import TodoStateAll from './TodoStateAll'
-import HighlightButton from '../components/HighlightButton'
+import './App.css'
+import { useState, useReducer } from 'react'
 import { ToastContainer, Slide } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { initState, reducer } from '../vm/todoVm'
-import Context from '../store'
+import HighlightButton from './components/HighlightButton'
+import TodoState from './pages/TodoState'
+import TodoStateApi from './pages/TodoStateApi'
+import TodoReducer from './pages/TodoReducer'
+import TodoFirestore from './pages/TodoFirestore'
+import TodoStateAll from './pages/TodoStateAll'
+import { initState, reducer } from './vm/todoVm'
+import Context from './store'
 
-export default function Home() {
+function App() {
   const [page, setPage] = useState('StateAll')
   const store = useReducer(reducer, initState)
 
   return (
     <div name='container'>
       <Context.Provider value={store}>
-        <Head>React Hook Practice</Head>
         <h1>React Hook Practice</h1>
         <HighlightButton mode={page} setMode={setPage} value='State' />
         <HighlightButton mode={page} setMode={setPage} value='StateApi' />
@@ -45,3 +43,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default App

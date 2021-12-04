@@ -2,6 +2,7 @@ module.exports = {
   'env': {
     'browser': true,
     'es2021': true,
+    'jest': true,
   },
   'extends': [
     'eslint:recommended',
@@ -13,7 +14,7 @@ module.exports = {
     'ecmaFeatures': {
       'jsx': true,
     },
-    'ecmaVersion': 13,
+    'ecmaVersion': 12,
     'sourceType': 'module',
   },
   'plugins': [
@@ -30,5 +31,6 @@ module.exports = {
     'linebreak-style': 0,
     'space-infix-ops': ['error', { 'int32Hint': false }],
     'eqeqeq': ['error', 'always'],
+    'react/prop-types': 'off',
   },
 }

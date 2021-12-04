@@ -3,7 +3,7 @@ import HighlightButton from '../components/HighlightButton'
 import Context from '../store'
 
 export default function TodoReducer() {
-  const [state, dispatch, page] = useContext(Context)
+  const [state, dispatch] = useContext(Context)
   const [list, setList] = [state.list, (x) => dispatch({ type: 'UpdateList', list: x(state.list) })]
   const [name, setName] = [state.name, (x) => dispatch({ type: 'UpdateName', name: x })]
   const [mode, setMode] = [state.mode, (x) => dispatch({ type: 'UpdateMode', mode: x })]
