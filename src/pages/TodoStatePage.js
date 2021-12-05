@@ -1,16 +1,11 @@
 import { Layout } from 'antd'
 import CollapsedButton from '../containers/CollapsedButton'
 const { Header, Content } = Layout
-import { useContext } from 'react'
+import { useState } from 'react'
 import Todo from '../components/Todo'
-import StateContext from '../store/StateContext'
 
-export default function TodoStateContext() {
-  const { todoState: [state, setState] } = useContext(StateContext)
-
-  const setList = (cb) => {
-    setState({ ...state, list: cb(state.list) })
-  }
+export default function TodoStatePage() {
+  const [list, setList] = useState([{ checked: false, name: 'init' }])
 
   return (
     <Layout className="site-layout">
@@ -18,8 +13,8 @@ export default function TodoStateContext() {
         <CollapsedButton />
       </Header>
       <Content className="site-layout-background my-content" >
-        <h2>Todo State Context</h2>
-        <Todo list={state.list} setList={setList} />
+        <h2>Todo Basic</h2>
+        <Todo list={list} setList={setList} />
       </Content>
     </Layout>
   )

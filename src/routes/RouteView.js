@@ -1,28 +1,28 @@
 import React, { Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
-const TodoState = React.lazy(() => import('../pages/TodoState'))
-const TodoStateApi = React.lazy(() => import('../pages/TodoStateApi'))
-const TodoReducer = React.lazy(() => import('../pages/TodoReducer'))
-const TodoFirestore = React.lazy(() => import('../pages/TodoFirestore'))
-const TodoStateAll = React.lazy(() => import('../pages/TodoStateAll'))
-const TodoStateAllLocalStorage = React.lazy(() => import('../pages/TodoStateAllLocalStorage'))
-const TodoRedux = React.lazy(() => import('../pages/TodoRedux'))
-const TodoStateContext = React.lazy(() => import('../pages/TodoStateContext'))
+const TodoStatePage = React.lazy(() => import('../pages/TodoStatePage'))
+const TodoApiPage = React.lazy(() => import('../pages/TodoApiPage'))
+const TodoReducerPage = React.lazy(() => import('../pages/TodoReducerPage'))
+const TodoFirestorePage = React.lazy(() => import('../pages/TodoFirestorePage'))
+const TodoStateObjectPage = React.lazy(() => import('../pages/TodoStateObjectPage'))
+const TodoLocalStoragePage = React.lazy(() => import('../pages/TodoLocalStoragePage'))
+const TodoReduxPage = React.lazy(() => import('../pages/TodoReduxPage'))
+const TodoStateContextPage = React.lazy(() => import('../pages/TodoStateContextPage'))
 
 export default function RouterView() {
   return (
     <Suspense fallback={<h1>Loading...</h1>}>
       <Routes>
-        <Route path="/" element={<TodoState />} />
-        <Route path="/basic" element={<TodoState />} />
-        <Route path="/stateObject" element={<TodoStateAll />} />
-        <Route path="/mockApi" element={<TodoStateApi />} />
-        <Route path="/reducer" element={<TodoReducer />} />
-        <Route path="/localStorage" element={<TodoStateAllLocalStorage />} />
-        <Route path="/redux" element={<TodoRedux />} />
-        <Route path="/stateContext" element={<TodoStateContext />} />
-        <Route path="/fireStore" element={<TodoFirestore />} />
+        <Route path="/" element={<TodoStatePage />} />
+        <Route path="/basic" element={<TodoStatePage />} />
+        <Route path="/stateObject" element={<TodoStateObjectPage />} />
+        <Route path="/mockApi" element={<TodoApiPage />} />
+        <Route path="/reducer" element={<TodoReducerPage />} />
+        <Route path="/localStorage" element={<TodoLocalStoragePage />} />
+        <Route path="/redux" element={<TodoReduxPage />} />
+        <Route path="/stateContext" element={<TodoStateContextPage />} />
+        <Route path="/fireStore" element={<TodoFirestorePage />} />
         <Route path="*" element={<h1>404 Not Found</h1>} />
       </Routes>
     </Suspense>

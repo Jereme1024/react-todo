@@ -1,18 +1,17 @@
 import { Layout } from 'antd'
 import CollapsedButton from '../containers/CollapsedButton'
 const { Header, Content } = Layout
-import { useState } from 'react'
 import Todo from '../components/Todo'
+import { useSelector, useDispatch } from 'react-redux'
+import { update } from '../store/slices/todoSlice'
 
-const defaultState = {
-  list: [],
-}
-
-export default function TodoStateAll() {
-  const [state, setState] = useState(defaultState)
+export default function TodoReduxPage() {
+  const state = useSelector((state) => state.todo)
+  const dispatch = useDispatch()
 
   const setList = (cb) => {
-    setState({ ...state, list: cb(state.list) })
+    const newList = cb(JSON.parse(JSON.stringify(state.list)))
+    dispatch(update(newList))
   }
 
   return (
@@ -21,7 +20,7 @@ export default function TodoStateAll() {
         <CollapsedButton />
       </Header>
       <Content className="site-layout-background my-content" >
-        <h2>Todo State All</h2>
+        <h2>Todo Redux</h2>
         <Todo list={state.list} setList={setList} />
       </Content>
     </Layout>

@@ -1,17 +1,16 @@
 import { Layout } from 'antd'
 import CollapsedButton from '../containers/CollapsedButton'
 const { Header, Content } = Layout
+import { useState } from 'react'
 import Todo from '../components/Todo'
-import { useSelector, useDispatch } from 'react-redux'
-import { update } from '../store/slices/todoSlice'
+import todoApis from '../apis/todoApis'
 
-export default function TodoStateAll() {
-  const state = useSelector((state) => state.todo)
-  const dispatch = useDispatch()
+export default function TodoApiPage() {
+  const [list, setListOrigin] = useState([{ checked: false, name: 'init' }])
 
-  const setList = (cb) => {
-    const newList = cb(JSON.parse(JSON.stringify(state.list)))
-    dispatch(update(newList))
+  const setList = async (cb) => {
+    const newList = cb(list)
+    await todoApis.update(newList).then(() => setListOrigin(newList)).catch(()=>{})
   }
 
   return (
@@ -20,8 +19,8 @@ export default function TodoStateAll() {
         <CollapsedButton />
       </Header>
       <Content className="site-layout-background my-content" >
-        <h2>Todo Redux</h2>
-        <Todo list={state.list} setList={setList} />
+        <h2>Todo State API</h2>
+        <Todo list={list} setList={setList} />
       </Content>
     </Layout>
   )

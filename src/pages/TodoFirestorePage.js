@@ -6,7 +6,7 @@ import { useEffect, useState, useRef } from 'react'
 import Todo from '../components/Todo'
 import db from '../utils/firebase.config'
 
-export default function TodoFirestore() {
+export default function TodoFirestorePage() {
   const [list, setList] = useState([])
   const docRef = useRef()
 

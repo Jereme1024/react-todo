@@ -8,9 +8,9 @@ const defaultState = {
   list: [],
 }
 
-const localStorageKey = 'TodoStateAllLocalStorage'
+const localStorageKey = 'TodoLocalStoragePage'
 
-export default function TodoStateAllLocalStorage() {
+export default function TodoLocalStoragePage() {
   const [state, setState] = useState(() => {
     const state = localStorage.getItem(localStorageKey)
     console.log('load!', state)

@@ -4,8 +4,16 @@ const { Header, Content } = Layout
 import { useState } from 'react'
 import Todo from '../components/Todo'
 
-export default function TodoState() {
-  const [list, setList] = useState([{ checked: false, name: 'init' }])
+const defaultState = {
+  list: [],
+}
+
+export default function TodoStateObjectPage() {
+  const [state, setState] = useState(defaultState)
+
+  const setList = (cb) => {
+    setState({ ...state, list: cb(state.list) })
+  }
 
   return (
     <Layout className="site-layout">
@@ -13,8 +21,8 @@ export default function TodoState() {
         <CollapsedButton />
       </Header>
       <Content className="site-layout-background my-content" >
-        <h2>Todo Basic</h2>
-        <Todo list={list} setList={setList} />
+        <h2>Todo State All</h2>
+        <Todo list={state.list} setList={setList} />
       </Content>
     </Layout>
   )
