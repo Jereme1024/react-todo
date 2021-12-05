@@ -1,5 +1,16 @@
-import { useState } from 'react'
-import HighlightButton from './HighlightButton'
+import { useMemo, useState } from 'react'
+import {
+  Input,
+  Button,
+  Checkbox,
+  Radio,
+  Divider,
+  Space,
+  Typography,
+  List,
+} from 'antd'
+
+const { Text } = Typography
 
 export default function Todo({ defaultMode, list, setList }) {
   const [mode, setMode] = useState(defaultMode || 'All')
@@ -25,43 +36,60 @@ export default function Todo({ defaultMode, list, setList }) {
   function TodoItem({ todo, i, handleCheck, handleDelete }) {
     return (
       <li>
-        <input type='checkbox' onClick={(e)=>handleCheck(e, i)} checked={todo.checked} onChange={()=>{}} />
-        {todo.name}
-        <button onClick={()=>handleDelete(i)}>Delete</button>
+        <Space direction="horizontal">
+          <Checkbox onClick={(e)=>handleCheck(e, i)} checked={todo.checked}></Checkbox>
+          <Text>{todo.name}</Text>
+          <Button danger type="primary" onClick={()=>handleDelete(i)}>Delete</Button>
+        </Space>
       </li>
     )
   }
 
   function TodoList({ mode, list, handleCheck, handleDelete }) {
-    return (<ul>
-      {list.map((todo, i) => (
-        (mode === 'All' || mode === 'Checked' && todo.checked || mode === 'Unchecked' && !todo.checked) ?
-          <TodoItem key={i} todo={todo} i={i} handleCheck={handleCheck} handleDelete={handleDelete} /> :
-          <div key={i}></div>
-      ))}
-    </ul>)
+    const filteredList = useMemo(() => {
+      if (mode === 'Checked') {
+        return list.filter((todo) => todo.checked)
+      } else if (mode === 'Unchecked') {
+        return list.filter((todo) => !todo.checked)
+      }
+      return list
+    }, [list])
+
+    return (
+      <List
+        bordered
+        dataSource={filteredList}
+        renderItem={(todo, i) => (
+          <List.Item>
+            <TodoItem key={i} todo={todo} i={i} handleCheck={handleCheck} handleDelete={handleDelete} />
+          </List.Item>
+        )}
+      />
+    )
   }
 
   function TodoControl({ mode, handleAdd }) {
     const [name, setName] = useState('')
 
     return (
-      <>
-        <input onChange={(e) => setName(e.target.value)} value={name}/>
-        <button onClick={() => (handleAdd(name), setName(''))}>Add</button>
-        <br/>
-        <HighlightButton setMode={setMode} mode={mode} value='All' />
-        <HighlightButton setMode={setMode} mode={mode} value='Checked' />
-        <HighlightButton setMode={setMode} mode={mode} value='Unchecked' />
-        <button onClick={()=>console.log(JSON.stringify(list, null, 2))}>Debug</button>
-      </>
+      <Space direction="vertical">
+        <Input.Group compact>
+          <Input style={{ width: 'calc(200px)' }} onChange={(e) => setName(e.target.value)} value={name} />
+          <Button type="primary" onClick={() => (handleAdd(name), setName(''))}>Add</Button>
+        </Input.Group>
+        <Radio.Group defaultValue={mode} buttonStyle="solid" onChange={(e) => setMode(e.target.value)}>
+          <Radio.Button value="All">All</Radio.Button>
+          <Radio.Button value="Checked">Checked</Radio.Button>
+          <Radio.Button value="Unchecked">Unchecked</Radio.Button>
+        </Radio.Group>
+      </Space>
     )
   }
 
   return (
     <>
       <TodoControl mode={mode} handleAdd={handleAdd} />
-      <hr></hr>
+      <Divider />
       <TodoList mode={mode} list={list} handleCheck={handleCheck} handleDelete={handleDelete} />
     </>
   )

@@ -1,3 +1,5 @@
+// deprecated: example
+
 export default function HighlightButton({ mode, setMode, value }) {
   const trueTemplate = (<b>{value}</b>)
   const falseTemplate = (<>{value}</>)
