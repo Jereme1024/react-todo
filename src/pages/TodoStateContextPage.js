@@ -1,6 +1,7 @@
-import { Layout } from 'antd'
-import CollapsedButton from '../containers/CollapsedButton'
+import { Layout, Typography } from 'antd'
 const { Header, Content } = Layout
+const { Title } = Typography
+import CollapsedButton from '../containers/CollapsedButton'
 import { useContext } from 'react'
 import Todo from '../components/Todo'
 import StateContext from '../store/StateContext'
@@ -18,7 +19,7 @@ export default function TodoStateContextPage() {
         <CollapsedButton />
       </Header>
       <Content className="site-layout-background my-content" >
-        <h2>Todo State Context</h2>
+        <Title level={3}>Todo State Context</Title>
         <Todo list={state.list} setList={setList} />
       </Content>
     </Layout>

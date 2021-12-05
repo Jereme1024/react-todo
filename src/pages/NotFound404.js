@@ -1,6 +1,7 @@
-import { Layout } from 'antd'
-import CollapsedButton from '../containers/CollapsedButton'
+import { Layout, Typography } from 'antd'
 const { Header, Content } = Layout
+const { Title } = Typography
+import CollapsedButton from '../containers/CollapsedButton'
 
 export default function NotFound404() {
   return (
@@ -9,7 +10,7 @@ export default function NotFound404() {
         <CollapsedButton />
       </Header>
       <Content className="site-layout-background my-content" >
-        <h1>404 Not Found</h1>
+        <Title>404 Not Found</Title>
       </Content>
     </Layout>
   )

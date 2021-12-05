@@ -1,6 +1,7 @@
-import { Layout } from 'antd'
-import CollapsedButton from '../containers/CollapsedButton'
+import { Layout, Typography } from 'antd'
 const { Header, Content } = Layout
+const { Title } = Typography
+import CollapsedButton from '../containers/CollapsedButton'
 import { doc, getDoc, updateDoc } from '@firebase/firestore'
 import { useEffect, useState, useRef } from 'react'
 import Todo from '../components/Todo'
@@ -38,7 +39,7 @@ export default function TodoFirestorePage() {
         <CollapsedButton />
       </Header>
       <Content className="site-layout-background my-content" >
-        <h2>Todo State</h2>
+        <Title level={3}>Todo State</Title>
         <Todo list={list} setList={updateList} />
       </Content>
     </Layout>

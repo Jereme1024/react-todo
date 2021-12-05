@@ -1,6 +1,7 @@
-import { Layout } from 'antd'
-import CollapsedButton from '../containers/CollapsedButton'
+import { Layout, Typography } from 'antd'
 const { Header, Content } = Layout
+const { Title } = Typography
+import CollapsedButton from '../containers/CollapsedButton'
 
 export default function LoadingPage() {
   return (
@@ -9,7 +10,7 @@ export default function LoadingPage() {
         <CollapsedButton />
       </Header>
       <Content className="site-layout-background my-content" >
-        <div style={{ color: 'gray' }} >Loading...</div>
+        <Title level={5}>Loading...</Title>
       </Content>
     </Layout>
   )
