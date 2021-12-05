@@ -1,6 +1,6 @@
-.active {
+/* .active {
   font-weight: bolder;
-}
+} */
 
 .trigger {
   padding: 0 24px;
@@ -22,4 +22,10 @@
 
 .site-layout .site-layout-background {
   background: #fff;
+}
+
+.my-content {
+  margin: 24px 16px;
+  padding: 24px;
+  /* min-height: 280; */
 }

@@ -1,6 +1,5 @@
 import React, { Suspense } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import NavBar from './NavBar'
+import { Routes, Route } from 'react-router-dom'
 
 const TodoState = React.lazy(() => import('../pages/TodoState'))
 const TodoStateApi = React.lazy(() => import('../pages/TodoStateApi'))
@@ -13,22 +12,19 @@ const TodoStateContext = React.lazy(() => import('../pages/TodoStateContext'))
 
 export default function RouterView() {
   return (
-    <BrowserRouter>
-      <NavBar />
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <Routes>
-          <Route path="/" element={<TodoState />} />
-          <Route path="/basic" element={<TodoState />} />
-          <Route path="/all" element={<TodoStateAll />} />
-          <Route path="/mockApi" element={<TodoStateApi />} />
-          <Route path="/reducer" element={<TodoReducer />} />
-          <Route path="/localStorage" element={<TodoStateAllLocalStorage />} />
-          <Route path="/redux" element={<TodoRedux />} />
-          <Route path="/stateContext" element={<TodoStateContext />} />
-          <Route path="/fireStore" element={<TodoFirestore />} />
-          <Route path="*" element={<h1>404 Not Found</h1>} />
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+    <Suspense fallback={<h1>Loading...</h1>}>
+      <Routes>
+        <Route path="/" element={<TodoState />} />
+        <Route path="/basic" element={<TodoState />} />
+        <Route path="/stateObject" element={<TodoStateAll />} />
+        <Route path="/mockApi" element={<TodoStateApi />} />
+        <Route path="/reducer" element={<TodoReducer />} />
+        <Route path="/localStorage" element={<TodoStateAllLocalStorage />} />
+        <Route path="/redux" element={<TodoRedux />} />
+        <Route path="/stateContext" element={<TodoStateContext />} />
+        <Route path="/fireStore" element={<TodoFirestore />} />
+        <Route path="*" element={<h1>404 Not Found</h1>} />
+      </Routes>
+    </Suspense>
   )
 }
