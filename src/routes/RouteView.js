@@ -1,5 +1,7 @@
 import React, { Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
+import LoadingPage from '../pages/LoadingPage'
+import NotFound404 from '../pages/NotFound404'
 
 const TodoStatePage = React.lazy(() => import('../pages/TodoStatePage'))
 const TodoApiPage = React.lazy(() => import('../pages/TodoApiPage'))
@@ -12,7 +14,7 @@ const TodoStateContextPage = React.lazy(() => import('../pages/TodoStateContextP
 
 export default function RouterView() {
   return (
-    <Suspense fallback={<h1>Loading...</h1>}>
+    <Suspense fallback={<LoadingPage />}>
       <Routes>
         <Route path="/" element={<TodoStatePage />} />
         <Route path="/basic" element={<TodoStatePage />} />
@@ -23,7 +25,7 @@ export default function RouterView() {
         <Route path="/redux" element={<TodoReduxPage />} />
         <Route path="/stateContext" element={<TodoStateContextPage />} />
         <Route path="/fireStore" element={<TodoFirestorePage />} />
-        <Route path="*" element={<h1>404 Not Found</h1>} />
+        <Route path="*" element={<NotFound404 />} />
       </Routes>
     </Suspense>
   )
