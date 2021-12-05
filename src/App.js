@@ -9,8 +9,8 @@ import reduxStore from './store/redux'
 import { Provider } from 'react-redux'
 import 'antd/dist/antd.css'
 import { Layout } from 'antd'
-import NavSider from './layouts/NavSider'
 import { BrowserRouter } from 'react-router-dom'
+import NavSider from './routes/NavSider'
 import RouterView from './routes/RouteView'
 
 function App() {
